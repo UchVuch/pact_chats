@@ -1,6 +1,6 @@
 <script setup>
-import { computed } from "vue";
-import { getImageUrl, getSvgIcon } from "@/app/utils/icons";
+import { computed } from "vue"
+import { getImageUrl, getSvgIcon } from "../../utils/icons"
 
 const props = defineProps({
   name: {
@@ -22,11 +22,7 @@ const props = defineProps({
   height: {
     type: String,
     default: "auto",
-  },
-  type: {
-    type: String,
-    default: "svg",
-  },
+  }
 });
 
 const width = computed(() => {
@@ -64,6 +60,7 @@ const height = computed(() => {
 .base-icon:deep(svg) {
   width: 100%;
   height: 100%;
+  display: flex;
 
   path {
     fill: currentColor;
