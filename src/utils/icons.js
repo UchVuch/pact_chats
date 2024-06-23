@@ -21,6 +21,8 @@ function loadIcons() {
   }
 }
 
+loadIcons()
+
 function getSvgIcon(name) {
   return svgResources.get(name);
 }
