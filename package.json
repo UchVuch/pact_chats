@@ -9,10 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.29"
+    "vue": "^3.4.29",
+    "vue-router": "^4.4.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
+    "autoprefixer": "^10.4.19",
+    "sass": "^1.77.6",
     "vite": "^5.3.1"
-  }
+  },
+  "browserslist": [
+    "last 2 years",
+    "> 1%",
+    "not dead"
+  ]
 }
