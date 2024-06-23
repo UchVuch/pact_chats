@@ -2,6 +2,13 @@
 import BaseIcon from '../base/BaseIcon.vue'
 
 defineProps({
+  variant: {
+    type: String,
+    default: 'default',
+    validator(value) {
+      return ['default', 'small'].includes(value)
+    }
+  },
   name: {
     type: String,
     default: 'Name'
@@ -27,15 +34,15 @@ defineProps({
 
 <template>
   <div class="chat-item">
-    <img src="../../assets/images/Avatar.png" alt="Avatar">
-    <div class="chat-item__info">
+    <img src="../../assets/images/Avatar.png" alt="Avatar" width="48" height="48">
+    <div class="chat-item__info" v-show="variant === 'default'">
       <div class="chat-item__name">
         <p>{{ name }}</p>
         <BaseIcon v-if="verifyed" name="verified" />
       </div>
       <p class="chat-item__message">{{ message }}</p>
     </div>
-    <div class="chat-item__right">
+    <div class="chat-item__right" v-show="variant === 'default'">
       <p class="chat-item__time">{{ time }}</p>
       <div v-if="unread > 0" class="chat-item__unread">{{ unread }}</div>
     </div>
@@ -45,7 +52,9 @@ defineProps({
 <style lang="scss" scoped>
 .chat-item {
   user-select: none;
+  overflow: hidden;
   border-right: 1px solid #D9DCE0;
+  max-height: 72px;
   display: flex;
   gap: 16px;
   background-color: transparent;
