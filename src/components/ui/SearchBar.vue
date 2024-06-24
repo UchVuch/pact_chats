@@ -1,14 +1,23 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import ButtonIcon from './ButtonIcon.vue'
 import BaseIcon from '../base/BaseIcon.vue'
 
-const emits = defineEmits(['toggleMenu'])
+const emits = defineEmits(['toggleMenu', 'searchChat'])
 const isToggledMenu = ref(false)
 const toggleMenu = () => {
   emits('toggleMenu')
   isToggledMenu.value = !isToggledMenu.value
 }
+
+const inputValue = ref('')
+let searchDebounce = null
+watch(inputValue, () => {
+  if (searchDebounce) clearTimeout(searchDebounce) 
+  searchDebounce = setTimeout(() => {
+    emits('searchChat', inputValue.value)
+  }, 800)
+})
 </script>
 
 <template>
@@ -18,7 +27,12 @@ const toggleMenu = () => {
     </ButtonIcon>
     <div class="search-bar__input-wrapper" v-show="!isToggledMenu">
       <BaseIcon name="search" color="#707991" aria-hidden="true" />
-      <input class="search-bar__input" type="text" placeholder="Поиск">
+      <input
+        v-model="inputValue"
+        class="search-bar__input"
+        type="text"
+        placeholder="Поиск"
+      >
     </div>
   </div>
 </template>
