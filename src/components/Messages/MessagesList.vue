@@ -27,7 +27,7 @@ onUpdated(() => {
   <div class="messages">
     <div class="messages__inner" ref="chat">
       <div v-if="messages.length" class="messages__list">
-        <template v-for="(message, index) in messages">
+        <template v-for="(message, index) in messages" :key="message.id">
           <div v-if="index < 1" class="messages__chip">
             {{ formatDateRu(message.date) }}
           </div>

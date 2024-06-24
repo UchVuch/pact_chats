@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import SearchBar from '../ui/SearchBar.vue'
 import ChatItem from './ChatItem.vue'
+import { RouterLink } from 'vue-router';
 
 const chats = [
   {
@@ -50,15 +51,22 @@ const searchChat = (chatName) => {
   <div class="chat-list__wrapper" :style="{width: widthMenu}">
     <SearchBar @toggleMenu="toggleMenu" @search-chat="searchChat" />
     <div class="chat-list">
-      <ChatItem
+      <RouterLink
         v-for="chat in chatList"
-        :key="chat.id" :name="chat.name"
-        :variant="isToggledMenu ? 'default' : 'small'"
-        :message="chat.message"
-        :time="chat.time"
-        :verifyed="chat.verifyed"
-        :unread="chat.unread"
-      />
+        :key="chat.id"
+        :to="`/chat/${chat.id}`"
+        class="chat-list__link"
+        exactActiveClass="chat-list__link--active"
+      >
+        <ChatItem
+          :variant="isToggledMenu ? 'default' : 'small'"
+          :name="chat.name"
+          :message="chat.message"
+          :time="chat.time"
+          :verifyed="chat.verifyed"
+          :unread="chat.unread"
+        />
+      </RouterLink>
     </div>
   </div>
 </template>
@@ -71,6 +79,15 @@ const searchChat = (chatName) => {
 
   &__wrapper {
     transition: width 0.3s ease;
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+
+  &__link--active :deep(.chat-item) {
+    border-right: 1px solid #D9DCE0;
+    background-color: #F5F5F5;
   }
 }
 </style>
