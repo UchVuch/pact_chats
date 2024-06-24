@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import SearchBar from '../ui/SearchBar.vue'
 import ChatItem from './ChatItem.vue'
 import { RouterLink } from 'vue-router';
@@ -32,9 +32,12 @@ const chats = [
 
 ]
 
-const isToggledMenu = ref(true)
-const widthMenu = computed(() => isToggledMenu.value ? '364px' : '80px')
-const toggleMenu = () => isToggledMenu.value = !isToggledMenu.value
+const isToggledMenu = ref(false)
+const widthMenu = computed(() => !isToggledMenu.value ? '364px' : '80px')
+const toggleMenu = () => {
+  localStorage.setItem('isToggledMenu', !isToggledMenu.value)
+  isToggledMenu.value = !isToggledMenu.value
+}
 
 const chatList = ref([...chats])
 const searchChat = (chatName) => {
@@ -45,6 +48,12 @@ const searchChat = (chatName) => {
     chatList.value = [...serachedChats]
   }
 }
+
+onMounted(() => {
+  if (JSON.parse(localStorage.getItem('isToggledMenu')) !== null) {
+    isToggledMenu.value = JSON.parse(localStorage.getItem('isToggledMenu'))
+  }
+})
 </script>
 
 <template>
@@ -59,7 +68,7 @@ const searchChat = (chatName) => {
         exactActiveClass="chat-list__link--active"
       >
         <ChatItem
-          :variant="isToggledMenu ? 'default' : 'small'"
+          :variant="!isToggledMenu ? 'default' : 'small'"
           :name="chat.name"
           :message="chat.message"
           :time="chat.time"

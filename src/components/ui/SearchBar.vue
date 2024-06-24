@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import ButtonIcon from './ButtonIcon.vue'
 import BaseIcon from '../base/BaseIcon.vue'
 
@@ -7,6 +7,7 @@ const emits = defineEmits(['toggleMenu', 'searchChat'])
 const isToggledMenu = ref(false)
 const toggleMenu = () => {
   emits('toggleMenu')
+  localStorage.setItem('isToggledMenu', !isToggledMenu.value)
   isToggledMenu.value = !isToggledMenu.value
 }
 
@@ -17,6 +18,14 @@ watch(inputValue, () => {
   searchDebounce = setTimeout(() => {
     emits('searchChat', inputValue.value)
   }, 800)
+})
+
+onMounted(() => {
+  console.log('mounted search')
+  console.log(JSON.parse(localStorage.getItem('isToggledMenu')))
+  if (JSON.parse(localStorage.getItem('isToggledMenu')) !== null) {
+    isToggledMenu.value = JSON.parse(localStorage.getItem('isToggledMenu'))
+  }
 })
 </script>
 
