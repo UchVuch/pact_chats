@@ -1,15 +1,11 @@
 <script setup>
-import ChatList from '../components/Chat/ChatList.vue'
 </script>
 
 <template>
-  <div class="page">
-    <ChatList/>
     <div class="chat">
       <div class="chat__content">
       </div>
     </div>
-  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -21,7 +17,6 @@ import ChatList from '../components/Chat/ChatList.vue'
 }
 
 .chat {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
 
