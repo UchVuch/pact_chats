@@ -39,7 +39,6 @@ watch(inputValue, () => {
 
 <style lang="scss" scoped>
 .search-bar {
-  border-right: 1px solid #D9DCE0;
   min-width: 80px;
   max-width: 364px;
   width: 100%;
@@ -47,7 +46,6 @@ watch(inputValue, () => {
   display: flex;
   align-items: center;
   gap: 20px;
-  background-color: $white;
   padding: 8px 16px;
 
   &__input-wrapper {

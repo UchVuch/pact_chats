@@ -53,7 +53,6 @@ defineProps({
 .chat-item {
   user-select: none;
   overflow: hidden;
-  border-right: 1px solid #D9DCE0;
   max-height: 72px;
   display: flex;
   gap: 16px;
@@ -62,7 +61,6 @@ defineProps({
   transition: background-color 0.3s ease, border-right 0.3s ease;
 
   &:hover {
-    border-right: 1px solid #D9DCE0;
     background-color: #F5F5F5;
   }
 

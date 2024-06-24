@@ -78,6 +78,8 @@ const searchChat = (chatName) => {
   width: auto;
 
   &__wrapper {
+    border-right: 1px solid #D9DCE0;
+    background-color: $white;
     transition: width 0.3s ease;
   }
 
@@ -86,7 +88,6 @@ const searchChat = (chatName) => {
   }
 
   &__link--active :deep(.chat-item) {
-    border-right: 1px solid #D9DCE0;
     background-color: #F5F5F5;
   }
 }
