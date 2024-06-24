@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-import ChatList from '../components/Chat/ChatList.vue'
 import TopBar from '../components/ui/TopBar.vue'
 import MessagesList from '../components/Messages/MessagesList.vue'
 import InputBar from '../components/ui/InputBar.vue'
@@ -45,28 +44,18 @@ const sendNewMessage = (text) => {
 </script>
 
 <template>
-  <div class="page">
-    <ChatList/>
-    <div class="chat">
-      <TopBar/>
-      <div class="chat__content">
-        <div class="chat__content-inner">
-          <MessagesList class="chat__list" :messages="messages"/>
-          <InputBar @send-message="sendNewMessage"/>
-        </div>
+  <div class="chat">
+    <TopBar/>
+    <div class="chat__content">
+      <div class="chat__content-inner">
+        <MessagesList class="chat__list" :messages="messages"/>
+        <InputBar @send-message="sendNewMessage"/>
       </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.page {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr;
-}
-
 .chat {
   display: flex;
   flex-direction: column;
