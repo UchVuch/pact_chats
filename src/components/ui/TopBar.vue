@@ -1,4 +1,5 @@
 <script setup>
+import { useRoute } from 'vue-router'
 import ButtonIcon from './ButtonIcon.vue'
 import BaseIcon from '../base/BaseIcon.vue'
 
@@ -12,6 +13,9 @@ defineProps({
     default: '5 минут назад'
   }
 })
+
+// а пока просто для наглядности меняем id рядом с name :) с помощью useRoute
+const route = useRoute()
 </script>
 
 <template>
@@ -19,7 +23,7 @@ defineProps({
     <div class="top-bar__info">
       <img src="../../assets/images/Avatar.png" alt="avatar" width="40" height="40">
       <div>
-        <p class="top-bar__name">{{ name }}</p>
+        <p class="top-bar__name">{{ name }} {{ route.params.id }}</p>
         <p class="top-bar__time">в сети {{ latestTime }}</p>
       </div>
     </div>

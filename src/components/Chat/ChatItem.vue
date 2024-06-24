@@ -63,7 +63,7 @@ defineProps({
 
   &:hover {
     border-right: 1px solid #D9DCE0;
-    background-color: #7079910A;
+    background-color: #F5F5F5;
   }
 
   &__info {

@@ -5,6 +5,7 @@ import TopBar from '../components/ui/TopBar.vue'
 import MessagesList from '../components/Messages/MessagesList.vue'
 import InputBar from '../components/ui/InputBar.vue'
 
+// тут при наличии бека используем useRoute, получаем :id из строки запроса и делаем запрос на бек для получения сообщений
 const messages = ref([
   {
     id: 1,
